@@ -11,18 +11,17 @@ namespace MyHabbits.Models
         public int Id { get; set; }
         public string Title { get; set; }
 
-
         public TimeSpan time_completed { get; set; }
         public TimeSpan time_goal { get; set; }
         public Boolean is_done { get; set; }
-        public DateTime completed_date { get; set; }
+        public DateTime? completed_date { get; set; }
 
         [Required]
-        public int user_id { get; set; }
+        public string ApplicationUserId { get; set; }
 
         public virtual Customer customer { get; set; }
 
-        public virtual ICollection<CustomerTask> tasks { get; set; }
+        
 
     }
 }

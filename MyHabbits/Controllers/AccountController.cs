@@ -165,6 +165,17 @@ namespace MyHabbits.Controllers
                         ApplicationUserId = user.Id
                     };
 
+                    var customerTask = new CustomerTask
+                    {
+                        Title = "Read",
+                        time_completed = new TimeSpan(0, 30, 0),
+                        time_goal = new TimeSpan(1, 0, 0),
+                        is_done = false,
+                        ApplicationUserId = user.Id,
+                        customer = customer
+                    };
+
+                    db.CustomerTasks.Add(customerTask);
                     db.Customers.Add(customer);
                     db.SaveChanges();
 

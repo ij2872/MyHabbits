@@ -1,31 +1,102 @@
-﻿@{
-    ViewBag.Title = "Home Page";
-}
+﻿@*<div class="jumbotron">
+        <h1>Track Your Habbits!</h1>
+        <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS, and JavaScript.</p>
+        <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+    </div>*@
+<div>
+    <h1>Daily Progress</h1>
+    <h4>UserId: @Model.CustomerTasks[0].ApplicationUserId</h4>
+    <div class="progress" style="margin-top: 20px;">
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+        @{
+            int value = 0;
+            int i = 0;
+            foreach (var task in Model.CustomerTasks)
+            {
+                value += (task.time_completed.TotalSeconds / task.time_goal.TotalSeconds) * 100;
+                i += 1;
+            }
+            value = value / i;
+
+            <div class="progress-bar" role="progressbar" aria-valuenow="@value" aria-valuemin="0" aria-valuemax="100" style="width: @value%;">
+                <span class="sr-only">@value% Complete</span>
+                @*Display Total Percentage, only if it fits progress bar*@
+                @if (@value > 20)
+                {
+                    <div>@value %</div>
+                }
+
+            </div>
+        }
+
+    </div>
 </div>
 
 <div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+    <div class="col-md-12 page">
+        <div class="page-header">
+            <h1>Current Tasks <span class="badge">3</span></h1>
+        </div>
+        <div class="tasks">
+
+            @foreach (var task in Model.CustomerTasks)
+            {
+                double percent = (task.time_completed.TotalSeconds / task.time_goal.TotalSeconds) * 100;
+
+                <div class="task">
+
+                    @* HEADER *@
+                    <div class="task-header">
+                        <div class="task-icon">
+                            <span class="glyphicon glyphicon-book" style="font-size: 2em;"></span>
+                        </div>
+                        <h4 class="task-title">@task.Title <small style="color:white"></small></h4>
+                        <div>So Far: @task.time_completed.Hours:@task.time_completed.Minutes</div>
+                        <div>Goal: @task.time_goal.Hours:@task.time_goal.Minutes</div>
+                    </div>
+                    <div class="progress task-progress">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="@percent" aria-valuemin="0" aria-valuemax="100" style="width: @percent%;">
+                            <span class="sr-only">@percent% Complete</span>
+                            @if (@percent > 20)
+                            {
+                                <div>@percent%</div>
+                            }
+                        </div>
+                    </div>
+                    @* OPTIONS *@
+
+                    <div class="task-button-group">
+                        <button class="add-5" data-id="@task.Id">5 mins</button>
+                        <button class="add-10" data-id="@task.Id">10 mins</button>
+                        <button class="add-15">15 mins</button>
+                        <button class="add-30">30 mins</button>
+                        <button class="add-60">1 hour</button>
+                        <button class="add-120">2 hour</button>
+
+                        @*TODO add a way for users to customize time spent*@
+                        @*<div class="task-custom">
+                                <input type="number" class="col-sm-6 form-control" placeholder="5" />
+                            </div>*@
+
+
+                    </div>
+
+                </div>
+            }
+
+        </div> @*END TASKS*@
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+
+    <div class="col-md-12 page">
+        <div class="page-header">
+            <h1>Create a new Task</h1>
+        </div>
+
+        <form class="NT-form">
+            <label for="newTaskName">Name</label>
+            <input type="text" name="newTaskName" placeholder="Running" />
+            <button type="submit">Add</button>
+        </form>
     </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
+
 </div>

@@ -195,13 +195,29 @@
     <Compile Include="Migrations\201709252021114_AddedCustomerTaskTable.Designer.cs">
       <DependentUpon>201709252021114_AddedCustomerTaskTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201709252028290_FixedCustomerTasksTableColumns.cs" />
+    <Compile Include="Migrations\201709252028290_FixedCustomerTasksTableColumns.Designer.cs">
+      <DependentUpon>201709252028290_FixedCustomerTasksTableColumns.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709252031190_SetDateTimeNullableInCustomerTaskTable.cs" />
+    <Compile Include="Migrations\201709252031190_SetDateTimeNullableInCustomerTaskTable.Designer.cs">
+      <DependentUpon>201709252031190_SetDateTimeNullableInCustomerTaskTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709252035034_CustomerTaskColumNameChangedUser_Id.cs" />
+    <Compile Include="Migrations\201709252035034_CustomerTaskColumNameChangedUser_Id.Designer.cs">
+      <DependentUpon>201709252035034_CustomerTaskColumNameChangedUser_Id.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\CustomerTasksViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\CustomerTask.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\FakeUserTasks.cs" />
+    <Compile Include="Services\IUserTaskService.cs" />
+    <Compile Include="Services\UserTaskService.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -280,6 +296,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201709252021114_AddedCustomerTaskTable.resx">
       <DependentUpon>201709252021114_AddedCustomerTaskTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709252028290_FixedCustomerTasksTableColumns.resx">
+      <DependentUpon>201709252028290_FixedCustomerTasksTableColumns.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709252031190_SetDateTimeNullableInCustomerTaskTable.resx">
+      <DependentUpon>201709252031190_SetDateTimeNullableInCustomerTaskTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709252035034_CustomerTaskColumNameChangedUser_Id.resx">
+      <DependentUpon>201709252035034_CustomerTaskColumNameChangedUser_Id.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
