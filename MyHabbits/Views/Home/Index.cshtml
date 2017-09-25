@@ -87,7 +87,11 @@
         </div> @*END TASKS*@
     </div>
 
-    <div class="col-md-12 page">
+
+    @Html.Partial("_CreateTaskView", new MyHabbits.Models.CustomerTask())
+
+
+    @*<div class="col-md-12 page">
         <div class="page-header">
             <h1>Create a new Task</h1>
         </div>
@@ -97,6 +101,6 @@
             <input type="text" name="newTaskName" placeholder="Running" />
             <button type="submit">Add</button>
         </form>
-    </div>
+    </div>*@
 
 </div>
