@@ -19,7 +19,7 @@ namespace MyHabbits.Models
         public virtual ApplicationUser app_user { get; set; }
 
         public virtual ICollection<CustomerTask> customerTasks { get; set; }
-
+        public virtual ICollection<CustomerTaskHistory> CustomerTasksHistory { get; set; }
         public string name
         {
             get

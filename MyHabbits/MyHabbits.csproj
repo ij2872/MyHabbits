@@ -207,9 +207,14 @@
     <Compile Include="Migrations\201709252035034_CustomerTaskColumNameChangedUser_Id.Designer.cs">
       <DependentUpon>201709252035034_CustomerTaskColumNameChangedUser_Id.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201709262336110_AddedCustomerTaskHistoryTable.cs" />
+    <Compile Include="Migrations\201709262336110_AddedCustomerTaskHistoryTable.Designer.cs">
+      <DependentUpon>201709262336110_AddedCustomerTaskHistoryTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\CustomerTaskHistory.cs" />
     <Compile Include="Models\CustomerTasksViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -307,6 +312,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201709252035034_CustomerTaskColumNameChangedUser_Id.resx">
       <DependentUpon>201709252035034_CustomerTaskColumNameChangedUser_Id.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709262336110_AddedCustomerTaskHistoryTable.resx">
+      <DependentUpon>201709262336110_AddedCustomerTaskHistoryTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
