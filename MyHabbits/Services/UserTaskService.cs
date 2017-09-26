@@ -45,9 +45,30 @@ namespace MyHabbits.Services
 
         public void DeleteTask(CustomerTask deleteTask, string AppId)
         {
+            var customerId = _context.Customers.FirstOrDefault(c => c.ApplicationUserId == AppId).ApplicationUserId;
+
+            deleteTask.ApplicationUserId = customerId;
+
             //@TODO Delete based on applicationUserId and Id of CustomerTask
-            var elementToDestroy = _context.CustomerTasks.Where(ct => ct.ApplicationUserId == AppId && ct.Title == deleteTask.Title).First();
+            var elementToDestroy = _context.CustomerTasks.FirstOrDefault(ct => ct.ApplicationUserId == deleteTask.ApplicationUserId && ct.Id == deleteTask.Id);
             _context.CustomerTasks.Remove(elementToDestroy);
+            _context.SaveChanges();
+        }
+
+
+        public void AddTimeToTask(CustomerTask task, int timeInSeconds)
+        {
+            var customerId = _context.Customers.FirstOrDefault(c => c.ApplicationUserId == task.ApplicationUserId);
+
+            var taskToUpdate = _context.CustomerTasks.FirstOrDefault(t => t.ApplicationUserId == task.ApplicationUserId && t.Id == task.Id);
+
+            // Check to see if task was retrived
+            if (taskToUpdate != null)
+            {
+                taskToUpdate.time_completed += TimeSpan.FromSeconds(timeInSeconds);
+            }
+
+            _context.SaveChanges();
         }
 
     }

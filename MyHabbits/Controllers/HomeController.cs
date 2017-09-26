@@ -51,6 +51,23 @@ namespace MyHabbits.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        // UPDATE: /Home/Update
+        [HttpPost]
+        public ActionResult Update(CustomerTask eTask, int secondsCompleted)
+        {
+            var currentUserId = User.Identity.GetUserId();
+
+            var updateTask = new CustomerTask
+            {
+                ApplicationUserId = currentUserId,
+                Id = eTask.Id,
+                
+            };
+
+            _UTService.AddTimeToTask(updateTask, secondsCompleted);
+            return RedirectToAction("Index", "Home");
+        }
+
         public async Task<ActionResult> Edit()
         {
             var taskItems = await _UTService.getIncompleteTasksAsync();
@@ -62,6 +79,26 @@ namespace MyHabbits.Controllers
 
             return View(model);
         }
+
+         
+        
+        // DELETE: /Home/Edit
+        [HttpDelete]
+        public JsonResult Edit(CustomerTask dTask)
+        {
+            var deleteTask = new CustomerTask
+            {
+                Title = dTask.Title,
+                Id = dTask.Id
+            };
+
+            string currentUserId = User.Identity.GetUserId();
+            _UTService.DeleteTask(deleteTask, currentUserId);
+
+            return Json("Sucessfully Deleted");
+            //return RedirectToAction("Edit", "Home");
+        }
+
 
         public ActionResult Contact()
         {

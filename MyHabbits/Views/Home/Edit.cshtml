@@ -25,16 +25,29 @@
         $(document).ready(function () {
             $('.edit-delete').on("click", function () {
                 var title = $(this).data('title');
+                var id = $(this).data('id');
                 var divIdToDelete = $(this).data('div-id');
+                
+                //create CustomerTask Object
+                var customerTask = {
+                    "Title": title,
+                    "Id": id,
+                };
+                console.log(customerTask.Id);
 
                 bootbox.confirm("Are you sure you want to delete " + title + "?" , function (result) {
                     if (result) {
                         $.ajax({
-                            url: "",
+                            url: "/Home/Edit/",
                             method: "DELETE",
-                            success: function () {
+                            data: customerTask,
+                            success: function (res) {
+                                console.log("success: " + res);
                                 $('#' + divIdToDelete).remove();
-
+                            },
+                            error: function (res) {
+                                console.log("Error: " + res);
+                                location.reload();
                             }
                         });
                     }
