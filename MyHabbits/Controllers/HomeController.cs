@@ -14,12 +14,13 @@ namespace MyHabbits.Controllers
     {
         private IUserTaskService _UTService = new UserTaskService();
 
-
+        [Authorize]
         public async Task<ActionResult> Index()
         {
 
             //var appId = User.Identity.GetUserId();
-            var taskItems = await _UTService.getIncompleteTasksAsync();
+            string currentUserId = User.Identity.GetUserId();
+            var taskItems = await _UTService.getIncompleteTasksAsync(currentUserId);
 
             var model = new CustomerTasksViewModel
             {
@@ -31,6 +32,7 @@ namespace MyHabbits.Controllers
 
         // /POST/
         [HttpPost]
+        [Authorize]
         public ActionResult Index(CustomerTask cTask)
         {
 
@@ -38,7 +40,7 @@ namespace MyHabbits.Controllers
             {
                 Title = cTask.Title,
                 time_completed = new TimeSpan(0, 0, 0),
-                time_goal = new TimeSpan(1, 0, 0),
+                time_goal = cTask.time_goal,
                 is_done = false,
                 ApplicationUserId = cTask.ApplicationUserId,
                 customer = cTask.customer
@@ -53,6 +55,7 @@ namespace MyHabbits.Controllers
 
         // UPDATE: /Home/Update
         [HttpPost]
+        [Authorize]
         public ActionResult Update(CustomerTask eTask, int secondsCompleted)
         {
             var currentUserId = User.Identity.GetUserId();
@@ -68,9 +71,11 @@ namespace MyHabbits.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        [Authorize]
         public async Task<ActionResult> Edit()
         {
-            var taskItems = await _UTService.getIncompleteTasksAsync();
+            string currentUserId = User.Identity.GetUserId();
+            var taskItems = await _UTService.getAllTasksAsync(currentUserId);
 
             var model = new CustomerTasksViewModel
             {

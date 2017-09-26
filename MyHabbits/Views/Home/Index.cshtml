@@ -36,7 +36,7 @@
             {
                 value = 100;
             }
-            <div class="progress-bar" role="progressbar" aria-valuenow="@value" aria-valuemin="0" aria-valuemax="100" style="width: @value%;">
+            <div class="progress-bar  @(value >= 100 ? "progress-complete" : "progress-uncomplete")" role="progressbar" aria-valuenow="@value" aria-valuemin="0" aria-valuemax="100" style="width: @value%; color: black; font-weight: 900;">
                 <span class="sr-only">@value% Complete</span>
                 @*Display Total Percentage, only if it fits progress bar*@
                 @if (@value > 20)
@@ -54,30 +54,35 @@
         <div class="page-header">
             <h1>Current Tasks <span class="badge">3</span></h1>
         </div>
+        @foreach (var task in Model.CustomerTasks)
+        {
+        }
         <div class="tasks">
 
             @foreach (var task in Model.CustomerTasks)
-            {
-                double percent = (task.time_completed.TotalSeconds / task.time_goal.TotalSeconds) * 100;
-
-                if(percent > 100)
                 {
-                    percent = 100;
-                }
+                    double percent = (task.time_completed.TotalSeconds / task.time_goal.TotalSeconds) * 100;
+                    percent = Math.Floor(percent);
+                    if(percent > 100)
+                    {
+                        percent = 100;
+                    }
 
                 <div class="task @(percent == 100 ? "task-completed" : "task-uncomplete") ">
 
                     @* HEADER *@
                     <div class="task-header">
                         <div class="task-icon">
-                            <span class="glyphicon glyphicon-book" style="font-size: 2em;"></span>
+                            <span class="glyphicon glyphicon-bookmark" style="font-size: 2em; color: @(task.is_done == true ? "#40DCC8" : "#FE635F")"></span>
                         </div>
-                        <h4 class="task-title">@task.Title <small style="color:white"></small></h4>
-                        <div>So Far: @task.time_completed.Hours:@task.time_completed.Minutes</div>
-                        <div>Goal: @task.time_goal.Hours:@task.time_goal.Minutes</div>
+                        <h3 class="task-title">@task.Title <small style="color:white"></small></h3>
+                        <div class="progress-data">
+                            So Far: @task.time_completed.Hours:@task.time_completed.Minutes | Goal: @task.time_goal.Hours:@task.time_goal.Minutes
+                        </div>
+                        
                     </div>
                     <div class="progress task-progress">
-                        <div class="progress-bar" role="progressbar" aria-valuenow="@percent" aria-valuemin="0" aria-valuemax="100" style="width: @percent%;">
+                        <div class="progress-bar @(percent >= 100 ? "progress-complete" : "progress-uncomplete")" role="progressbar" aria-valuenow="@percent" aria-valuemin="0" aria-valuemax="100" style="width: @percent%;">
                             <span class="sr-only">@percent% Complete</span>
                             @if (@percent > 20)
                             {

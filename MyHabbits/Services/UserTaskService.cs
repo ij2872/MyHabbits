@@ -19,14 +19,23 @@ namespace MyHabbits.Services
         }
 
 
-        public async Task<IEnumerable<CustomerTask>> getIncompleteTasksAsync()
+        public async Task<IEnumerable<CustomerTask>> getIncompleteTasksAsync(string AppId)
         {
 
+            //@TODO Make  it return just incomplete
             var items = await _context.CustomerTasks
-                    .Where(x => x.is_done == false)
+                    .Where(x => x.ApplicationUserId == AppId)
                     .ToArrayAsync();
             return items;
 
+        }
+
+        public async Task<IEnumerable<CustomerTask>> getAllTasksAsync(string AppId)
+        {
+            var items = await _context.CustomerTasks
+                    .Where(x => x.ApplicationUserId == AppId)
+                    .ToArrayAsync();
+            return items;
         }
 
 
@@ -66,10 +75,19 @@ namespace MyHabbits.Services
             if (taskToUpdate != null)
             {
                 taskToUpdate.time_completed += TimeSpan.FromSeconds(timeInSeconds);
+
+                // Mark as completed when goal is accomplished
+                if(taskToUpdate.time_completed >= taskToUpdate.time_goal)
+                {
+                    taskToUpdate.is_done = true;
+                    taskToUpdate.completed_date = DateTime.Today;
+                }     
+
             }
 
             _context.SaveChanges();
         }
 
+        
     }
 }
