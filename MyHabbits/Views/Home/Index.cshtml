@@ -15,7 +15,15 @@
             //Display each Task form CustomerTasks Table
             foreach (var task in Model.CustomerTasks)
             {
-                value += (task.time_completed.TotalSeconds / task.time_goal.TotalSeconds) * 100;
+                var timeCompleted = task.time_completed.TotalSeconds;
+                var goalTime = task.time_goal.TotalSeconds;
+                var percentCompleted = (timeCompleted / goalTime) * 100;
+                if (percentCompleted > 100)
+                {
+                    percentCompleted = 100;
+                }
+
+                value += percentCompleted;
                 i += 1;
             }
             if(i == 0)
@@ -24,6 +32,10 @@
             }
             value = value / i;
 
+            if(value > 100)
+            {
+                value = 100;
+            }
             <div class="progress-bar" role="progressbar" aria-valuenow="@value" aria-valuemin="0" aria-valuemax="100" style="width: @value%;">
                 <span class="sr-only">@value% Complete</span>
                 @*Display Total Percentage, only if it fits progress bar*@
@@ -48,7 +60,12 @@
             {
                 double percent = (task.time_completed.TotalSeconds / task.time_goal.TotalSeconds) * 100;
 
-                <div class="task">
+                if(percent > 100)
+                {
+                    percent = 100;
+                }
+
+                <div class="task @(percent == 100 ? "task-completed" : "task-uncomplete") ">
 
                     @* HEADER *@
                     <div class="task-header">
