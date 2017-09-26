@@ -10,6 +10,6 @@ namespace MyHabbits.Services
     interface IUserTaskService
     {
         Task<IEnumerable<CustomerTask>> getIncompleteTasksAsync();
-        void AddTask(CustomerTask newTask);
+        void AddTask(CustomerTask newTask, String AppId);
     }
 }

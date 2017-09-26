@@ -14,6 +14,7 @@ namespace MyHabbits.Controllers
     {
         private IUserTaskService _UTService = new UserTaskService();
 
+
         public async Task<ActionResult> Index()
         {
 
@@ -32,6 +33,7 @@ namespace MyHabbits.Controllers
         [HttpPost]
         public ActionResult Index(CustomerTask cTask)
         {
+
             var newTask = new CustomerTask
             {
                 Title = cTask.Title,
@@ -40,10 +42,13 @@ namespace MyHabbits.Controllers
                 is_done = false,
                 ApplicationUserId = cTask.ApplicationUserId,
                 customer = cTask.customer
-            }; 
-            _UTService.AddTask(newTask);
+            };
 
-            return View();
+            //get logged in user applicationUserId
+            string currentUserId = User.Identity.GetUserId();
+            _UTService.AddTask(newTask, currentUserId);
+
+            return RedirectToAction("Index", "Home");
         }
 
         public ActionResult About()

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Web;
 using MyHabbits.Models;
 using System.Data.Entity;
+using Microsoft.AspNet.Identity;
 
 namespace MyHabbits.Services
 {
@@ -29,8 +30,12 @@ namespace MyHabbits.Services
         }
 
 
-        public void AddTask(CustomerTask newTask)
+        public void AddTask(CustomerTask newTask, String AppId)
         {
+            //ApplicationUser currentUser = _context.Users.FirstOrDefault(u => u.Id == AppId);
+
+            newTask.ApplicationUserId = AppId;
+
             _context.CustomerTasks.Add(newTask);
             _context.SaveChanges();
         }
