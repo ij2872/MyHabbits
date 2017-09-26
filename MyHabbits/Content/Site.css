@@ -26,7 +26,10 @@ textarea {
 }
 
 
-
+/*BOOTBOX*/
+.bootbox-body{
+    color: black;
+}
 
 
 
@@ -84,4 +87,24 @@ textarea {
 }
 .task-button-group button:active{
     background-color: #e5e5e5;
+}
+
+
+
+/*EDIT PAGE*/
+.edit-container{
+    background-color: steelblue;
+    height: 100px;
+    padding: 25px;
+    margin-top: 20px;
+    border-radius: 5px;
+    font-size: 1.5em;
+    position: relative;
+}
+
+.edit-delete{
+    position: absolute;
+    right: 25px;
+    top: 25px;
+    width: 100px;
 }

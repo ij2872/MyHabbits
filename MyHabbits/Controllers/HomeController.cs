@@ -18,7 +18,7 @@ namespace MyHabbits.Controllers
         public async Task<ActionResult> Index()
         {
 
-            var appId = User.Identity.GetUserId();
+            //var appId = User.Identity.GetUserId();
             var taskItems = await _UTService.getIncompleteTasksAsync();
 
             var model = new CustomerTasksViewModel
@@ -51,11 +51,16 @@ namespace MyHabbits.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        public ActionResult About()
+        public async Task<ActionResult> Edit()
         {
-            ViewBag.Message = "Your application description page.";
+            var taskItems = await _UTService.getIncompleteTasksAsync();
 
-            return View();
+            var model = new CustomerTasksViewModel
+            {
+                CustomerTasks = taskItems
+            };
+
+            return View(model);
         }
 
         public ActionResult Contact()

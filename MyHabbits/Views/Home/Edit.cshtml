@@ -1,0 +1,46 @@
+﻿@{
+    ViewBag.Title = "Edit";
+}
+<h2>@ViewBag.Title.</h2>
+<h3>@ViewBag.Message</h3>
+
+<div class="container">
+    @{
+            int i = 0;
+            foreach (var task in Model.CustomerTasks)
+            {
+            <div class="row edit-container" id='@i'>
+                <div class="col-sm-10 edit-task">@task.Title</div>
+                <button type="button" class="btn btn-danger edit-delete" data-div-id='@i' data-title='@task.Title' data-id='@task.Id'>Delete</button>
+            </div>
+            i++;
+        }
+    }
+</div>
+
+
+@section scripts{
+    <script src="~/Scripts/bootbox.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.edit-delete').on("click", function () {
+                var title = $(this).data('title');
+                var divIdToDelete = $(this).data('div-id');
+
+                bootbox.confirm("Are you sure you want to delete " + title + "?" , function (result) {
+                    if (result) {
+                        $.ajax({
+                            url: "",
+                            method: "DELETE",
+                            success: function () {
+                                $('#' + divIdToDelete).remove();
+
+                            }
+                        });
+                    }
+                });
+
+            });
+        });
+    </script>   
+}
