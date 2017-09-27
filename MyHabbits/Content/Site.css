@@ -1,10 +1,14 @@
 ﻿/*old background color: */
-
+html{
+    background-color: #21262C;
+}
 body {
     padding-top: 50px;
     padding-bottom: 20px;
     color: white;
-    background-color: #1B2127 ;
+    background-color: #1B2127;
+    font-family: 'Open Sans', sans-serif;
+
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -27,6 +31,15 @@ textarea {
     max-width: 280px;
 }
 
+input:not([type='submit']){
+    background-color: #545e6b;
+    border: none;
+    color: white;
+}
+
+.logo{
+    font-family: 'Righteous', cursive;
+}
 
 /*BOOTBOX*/
 .bootbox-body{

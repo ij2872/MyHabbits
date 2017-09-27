@@ -1,1 +1,1 @@
-sqlcmd -i CustomerTaskArchiveQuery.sql
+sqlcmd -i CustomerTaskArchiveQuery.sql -p (LocalDb)\MSSQLLocalDB
