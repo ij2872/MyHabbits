@@ -19,6 +19,6 @@ namespace MyHabbits.Models
         [Required]
         public string ApplicationUserId { get; set; }
 
-        public virtual CustomerTask customer_task { get; set; }
+        //public virtual CustomerTask customer_task { get; set; }
     }
 }

@@ -215,6 +215,10 @@
     <Compile Include="Migrations\201709270025460_UpdatedCustomerTaskHistoryTableColumnPercent_CompletedToNullable.Designer.cs">
       <DependentUpon>201709270025460_UpdatedCustomerTaskHistoryTableColumnPercent_CompletedToNullable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201709270037108_DeletedCustomer_taskFromCustomerTaskHistory.cs" />
+    <Compile Include="Migrations\201709270037108_DeletedCustomer_taskFromCustomerTaskHistory.Designer.cs">
+      <DependentUpon>201709270037108_DeletedCustomer_taskFromCustomerTaskHistory.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -224,6 +228,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\CustomerTask.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\DailyUpdateService.cs" />
     <Compile Include="Services\IUserTaskService.cs" />
     <Compile Include="Services\UserTaskService.cs" />
     <Compile Include="Startup.cs" />
@@ -235,10 +240,12 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Query\CustomerTaskArchiveQuery.sql" />
     <Content Include="Scripts\bootbox.js" />
     <Content Include="Scripts\bootbox.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Query\dailyHabbitsUpdate.bat" />
     <None Include="Scripts\jquery-1.10.2-vsdoc.js" />
     <Content Include="Scripts\homeTaskScript.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -322,6 +329,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201709270025460_UpdatedCustomerTaskHistoryTableColumnPercent_CompletedToNullable.resx">
       <DependentUpon>201709270025460_UpdatedCustomerTaskHistoryTableColumnPercent_CompletedToNullable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709270037108_DeletedCustomer_taskFromCustomerTaskHistory.resx">
+      <DependentUpon>201709270037108_DeletedCustomer_taskFromCustomerTaskHistory.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
