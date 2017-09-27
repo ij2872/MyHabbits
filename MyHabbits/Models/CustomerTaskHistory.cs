@@ -14,7 +14,7 @@ namespace MyHabbits.Models
         public TimeSpan time_completed { get; set; }
         public TimeSpan time_goal { get; set; }
         public Boolean is_done { get; set; }
-        public Decimal percent_completed { get; set; }
+        public Decimal? percent_completed { get; set; }
         
         [Required]
         public string ApplicationUserId { get; set; }

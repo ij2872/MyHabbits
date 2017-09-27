@@ -211,6 +211,10 @@
     <Compile Include="Migrations\201709262336110_AddedCustomerTaskHistoryTable.Designer.cs">
       <DependentUpon>201709262336110_AddedCustomerTaskHistoryTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201709270025460_UpdatedCustomerTaskHistoryTableColumnPercent_CompletedToNullable.cs" />
+    <Compile Include="Migrations\201709270025460_UpdatedCustomerTaskHistoryTableColumnPercent_CompletedToNullable.Designer.cs">
+      <DependentUpon>201709270025460_UpdatedCustomerTaskHistoryTableColumnPercent_CompletedToNullable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -315,6 +319,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201709262336110_AddedCustomerTaskHistoryTable.resx">
       <DependentUpon>201709262336110_AddedCustomerTaskHistoryTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709270025460_UpdatedCustomerTaskHistoryTableColumnPercent_CompletedToNullable.resx">
+      <DependentUpon>201709270025460_UpdatedCustomerTaskHistoryTableColumnPercent_CompletedToNullable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
