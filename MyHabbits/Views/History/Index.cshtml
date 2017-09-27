@@ -1,0 +1,23 @@
+﻿@model MyHabbits.Models.CustomerTaskHistoryViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@{
+    foreach (var task in Model.CustomerTaskHistory.Take(10))
+    {
+        <p>Completed: @string.Format("{0:MMMM dd, yy}", task.completed_date)</p>
+        <p>Time Completed: @task.time_completed</p>
+        <p>Goal of: @task.time_goal</p>
+        <p></p>
+        <p></p>
+
+        <br />
+
+    }
+}
+
+<h2>D3 Data</h2>

@@ -24,7 +24,7 @@ namespace MyHabbits.Services
 
             //@TODO Make  it return just incomplete
             var items = await _context.CustomerTasks
-                    .Where(x => x.ApplicationUserId == AppId)
+                    .Where(x => x.ApplicationUserId == AppId )
                     .ToArrayAsync();
             return items;
 
