@@ -88,6 +88,17 @@ namespace MyHabbits.Services
             _context.SaveChanges();
         }
 
+        public void AdjustTimeGoal(CustomerTask editTask, string AppId)
+        {
+            var taskToUpdate = _context.CustomerTasks.FirstOrDefault(t => t.ApplicationUserId == AppId && t.Id == editTask.Id);
+
+            if(taskToUpdate != null)
+            {
+                taskToUpdate.time_goal = editTask.time_goal;
+            }
+
+            _context.SaveChanges();
+        }
         
     }
 }

@@ -14,5 +14,6 @@ namespace MyHabbits.Services
         void AddTask(CustomerTask newTask, String AppId);
         void DeleteTask(CustomerTask deleteTask, string AppId);
         void AddTimeToTask(CustomerTask updateTask, int secondsCompleted);
+        void AdjustTimeGoal(CustomerTask editTask, string AppId);
     }
 }

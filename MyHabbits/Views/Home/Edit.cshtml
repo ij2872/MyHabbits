@@ -14,7 +14,7 @@
 
                 <div class="edit-goal">
                     <label for="@string.Format("goal-time{0}", @task.Id)" class="control-label">Goal: </label>
-                    <input class="goal-time" id="@string.Format("goal-time{0}", @task.Id)" placeholder="@string.Format("{0:D2}:{1:D2}", task.time_goal.Hours, task.time_goal.Minutes)" data-div-id='@i' data-title='@task.Title' data-id='@task.Id'/>
+                    <input  class="goal-time" id="@string.Format("goal-time{0}", @task.Id)" value="@string.Format("{0:D2}:{1:D2}", task.time_goal.Hours, task.time_goal.Minutes)" data-div-id='@i' data-title='@task.Title' data-id='@task.Id' type="time" min="00:01" max="23:59" />
                     <button class="btn btn-default goal-time-btn" style="width: 100px; margin-bottom: 5px;" data-id='@task.Id'>Update</button>
                 </div>
 
@@ -37,7 +37,7 @@
 
         //-Formats user input to a TimeSpan format.
         // 5 mins -> 00:05:00
-        // 1 hour -> 01:00:00
+        // 1:00 hour -> 01:00:00
         // 20 hours 40 mins -> 20:40:00
         
 
@@ -47,16 +47,33 @@
         }
 
         $(document).ready(function () {
+
+            //Handle goal updates
             $('.goal-time-btn').on('click', function () {
 
                 //id of button pressed
                 var btnId = $(this).data('id');
 
-                //get data from user input
+                //get data from user input & send ajax 
                 var inpTime = $('#goal-time' + btnId).val();
-                console.log(inpTime);
-                if (isValidInput(inpTime)) {
 
+                console.log(btnId);
+                if (isValidInput(inpTime)) {
+                    $.ajax({
+                        url: "/Home/updateGoal/",
+                        method: "POST",
+                        data: {
+                            Id: btnId,
+                            time_goal: inpTime
+                        },
+                        success: function (result) {
+                            $('#goal-time' + btnId).val("");
+                            location.reload();
+                        },
+                        error: function (result) {
+                            console.log("Something Went Wrong with updating the time of goal.");
+                        }
+                    });
                 }
 
 

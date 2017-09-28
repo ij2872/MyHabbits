@@ -85,7 +85,31 @@ namespace MyHabbits.Controllers
             return View(model);
         }
 
-         
+        
+        // POST: /Home/Edit 
+        // Updates time_goal of CustomerTask
+        [HttpPost]
+        public JsonResult updateGoal(CustomerTask eTask)
+        {            
+            //user auth
+            string currentUserId = User.Identity.GetUserId();
+
+            var goalTask = new CustomerTask
+            {
+                Id = eTask.Id,
+                time_goal = eTask.time_goal
+            };
+
+            if(goalTask == null)
+            {
+                return Json("Something went wrong on the HttpPost Edit Controller");
+            }
+
+            _UTService.AdjustTimeGoal(goalTask, currentUserId);
+
+            return Json("Successfully Changed goal");
+        }
+
         
         // DELETE: /Home/Edit
         [HttpDelete]
@@ -101,7 +125,6 @@ namespace MyHabbits.Controllers
             _UTService.DeleteTask(deleteTask, currentUserId);
 
             return Json("Sucessfully Deleted");
-            //return RedirectToAction("Edit", "Home");
         }
 
 
