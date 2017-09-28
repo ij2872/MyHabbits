@@ -89,6 +89,7 @@ namespace MyHabbits.Controllers
         // POST: /Home/Edit 
         // Updates time_goal of CustomerTask
         [HttpPost]
+        [Authorize]
         public JsonResult updateGoal(CustomerTask eTask)
         {            
             //user auth
@@ -113,6 +114,7 @@ namespace MyHabbits.Controllers
         
         // DELETE: /Home/Edit
         [HttpDelete]
+        [Authorize]
         public JsonResult Edit(CustomerTask dTask)
         {
             var deleteTask = new CustomerTask
@@ -127,12 +129,5 @@ namespace MyHabbits.Controllers
             return Json("Sucessfully Deleted");
         }
 
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
     }
 }
