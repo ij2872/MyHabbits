@@ -26,8 +26,8 @@ GO
 
 --PRODUCTION QUERIES
 --Copies completed CustomerTasks to CustomerTaskHistories
-INSERT INTO CustomerTaskHistories (task_id, completed_date, time_completed, time_goal, is_done, ApplicationUserId, Customer_Id)
-SELECT t.Id AS task_id, t.completed_date, t.time_completed, t.time_goal, t.is_done, t.ApplicationUserId, t.customer_Id
+INSERT INTO CustomerTaskHistories (task_id, Title, completed_date, time_completed, time_goal, is_done, ApplicationUserId, Customer_Id)
+SELECT t.Id AS task_id, t.Title, t.completed_date, t.time_completed, t.time_goal, t.is_done, t.ApplicationUserId, t.customer_Id
 FROM CustomerTasks t
 WHERE t.is_done = 1
 

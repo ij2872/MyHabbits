@@ -10,7 +10,15 @@
             foreach (var task in Model.CustomerTasks)
             {
             <div class="row edit-container" id='@i'>
-                <div class="col-sm-10 edit-task">@task.Title</div>
+                <div class="col-sm-10 edit-title">@task.Title</div>
+
+                <div class="edit-goal">
+                    <label for="@string.Format("goal-time{0}", @task.Id)" class="control-label">Goal: </label>
+                    <input class="goal-time" id="@string.Format("goal-time{0}", @task.Id)" placeholder="@string.Format("{0:D2}:{1:D2}", task.time_goal.Hours, task.time_goal.Minutes)" data-div-id='@i' data-title='@task.Title' data-id='@task.Id'/>
+                    <button class="btn btn-default goal-time-btn" style="width: 100px; margin-bottom: 5px;" data-id='@task.Id'>Update</button>
+                </div>
+
+
                 <button type="button" class="btn btn-danger edit-delete" data-div-id='@i' data-title='@task.Title' data-id='@task.Id'>Delete</button>
             </div>
             i++;
@@ -22,7 +30,38 @@
 @section scripts{
     <script src="~/Scripts/bootbox.min.js"></script>
     <script>
+        //-Validates User time input
+        var isValidInput = function (time) {
+            return true;
+        }
+
+        //-Formats user input to a TimeSpan format.
+        // 5 mins -> 00:05:00
+        // 1 hour -> 01:00:00
+        // 20 hours 40 mins -> 20:40:00
+        
+
+        var timeFormat = function (time) {
+            var result = "";
+            console.log("FUINCTION WOKRS");
+        }
+
         $(document).ready(function () {
+            $('.goal-time-btn').on('click', function () {
+
+                //id of button pressed
+                var btnId = $(this).data('id');
+
+                //get data from user input
+                var inpTime = $('#goal-time' + btnId).val();
+                console.log(inpTime);
+                if (isValidInput(inpTime)) {
+
+                }
+
+
+            });
+
             $('.edit-delete').on("click", function () {
                 var title = $(this).data('title');
                 var id = $(this).data('id');

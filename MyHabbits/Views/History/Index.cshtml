@@ -5,19 +5,34 @@
 }
 
 <h2>Index</h2>
+<div class="container">
+    @{
+        foreach (var task in Model.CustomerTaskHistory.Take(10))
+        {
+            <div class="row history-container">
+                @if (!@task.Title.IsEmpty())
+                {
+                    <p class="history-title">@task.Title</p>
+                    <br />
+                }
+                
+                <p>Completed: @string.Format("{0:MMMM dd, yy}", task.completed_date)</p>
+                <br />
+                <p>Time Completed: <span class="text-green">@task.time_completed</span></p>
+                <p>Goal of: <span class="text-blue">@task.time_goal</span></p>
+            </div>
 
-@{
-    foreach (var task in Model.CustomerTaskHistory.Take(10))
-    {
-        <p>Completed: @string.Format("{0:MMMM dd, yy}", task.completed_date)</p>
-        <p>Time Completed: @task.time_completed</p>
-        <p>Goal of: @task.time_goal</p>
-        <p></p>
-        <p></p>
+            <p></p>
+            <p></p>
 
-        <br />
+            <br />
 
+        }
     }
-}
 
+</div>
+@*
+
+TODO Get Data and create a D3 graph.
 <h2>D3 Data</h2>
+*@

@@ -40,7 +40,12 @@ input:not([type='submit']){
 .logo{
     font-family: 'Righteous', cursive;
 }
-
+.text-green{
+    color: #89f9c7;
+}
+.text-blue{
+    color: #e5fffd;
+}
 /*BOOTBOX*/
 .bootbox-body{
     color: black;
@@ -139,20 +144,50 @@ input:not([type='submit']){
 /*EDIT PAGE*/
 .edit-container{
     background-color: #4E5A67;
-    height: 100px;
-    padding: 25px;
+    padding: 5px;
+    padding-top: 20px;
     margin-top: 20px;
     border-radius: 5px;
     font-size: 1.5em;
     position: relative;
 }
-
+.edit-task{
+    padding-left: 0px;
+}
+.edit-goal{
+    display: inline-block;
+    padding-top: 35px;
+    padding-bottom: 0px;
+    padding-left: 15px;
+}
 .edit-delete{
     position: absolute;
     right: 25px;
     top: 25px;
     width: 100px;
 }
+
+/*HISTORY PAGE*/
+.history-container{
+    background-color: #4E5A67;
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 5px;
+    font-size: 1.5em;
+    position: relative;
+}
+
+.history-container .history-title{
+    padding-bottom: 15px;
+    font-weight: bolder;
+}
+.history-container p{
+    display: inline-block;
+    padding-top: 5px;
+    padding-left: 20px;
+}
+
+
 
 
 @media screen and (max-width: 991px){
@@ -166,4 +201,8 @@ input:not([type='submit']){
     .task-button-group{
         justify-content: center;
     }
+    #newGoalTime{
+        width: 90%;
+    }
 }
+

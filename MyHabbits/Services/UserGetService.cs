@@ -19,8 +19,13 @@ namespace MyHabbits.Services
 
         public async Task<IEnumerable<CustomerTaskHistory>> getCompletedHistory(string AppId)
         {
+            //var results = await (from th in _context.CustomerTaskHistory
+            //               join t in _context.CustomerTasks on th.ApplicationUserId equals t.ApplicationUserId
+            //               select new CustomerTask()).ToArrayAsync();
             var items = await _context.CustomerTaskHistory
                     .Where(h => h.ApplicationUserId == AppId).ToArrayAsync();
+
+
             return items;
         }
     }

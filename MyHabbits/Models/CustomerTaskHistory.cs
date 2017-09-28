@@ -9,6 +9,7 @@ namespace MyHabbits.Models
     public class CustomerTaskHistory
     {
         public int Id { get; set; }
+        public string Title { get; set; }
         public int task_id { get; set; }
 
         [DataType(DataType.DateTime)]
