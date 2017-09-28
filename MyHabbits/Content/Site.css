@@ -167,10 +167,7 @@ input:not([type='submit']){
     width: 100px;
 }
 
-input[type='time']::-webkit-clear-button {
-    -webkit-appearance: none;
-    appearance: none;
-}
+
 /*HISTORY PAGE*/
 .history-container{
     background-color: #4E5A67;
